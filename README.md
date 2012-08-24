@@ -2,7 +2,7 @@
 
 A simple connection manager implemented on top of native PHP mysqli objects for maximum speed and efficiency.
 
-DBPool is in active development and will continue to be improved over time with the goal of maintaining speed,
+DBPool is in active development and will continue to be improved over time with the goals of maintaining speed,
 stability, and backwards compatibility through keeping a simple and consistent API across versions.
 
 ##Requirements
