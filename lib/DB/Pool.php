@@ -124,7 +124,7 @@ class Pool
 	{
 		// Ensure the instance type is valid (master, slave, etc)
 		if(!array_key_exists($instanceType, $this->connectionParams)) {
-			throw new DBException("Instance type does not exist: ($instanceType)", DBException::TYPE_NOT_DEFINED);
+			throw new Exception("Instance type does not exist: ($instanceType)", Exception::TYPE_NOT_DEFINED);
 		}
 
 		// Request to open a connection if one doesn't already exist and return it
@@ -154,7 +154,7 @@ class Pool
 			$c = array_shift($this->connectionParams[$instanceType]);
 		} else {
 			error_log("[DBPool error] DB pool in exhausted for type ($instanceType)");
-			throw new DBException("DB pool in exhausted for type ($instanceType)!", DBException::NO_CONNECTION);
+			throw new Exception("DB pool in exhausted for type ($instanceType)!", Exception::NO_CONNECTION);
 		}
 
 		// Find the right connection object
