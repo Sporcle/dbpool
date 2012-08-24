@@ -1,0 +1,303 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Sporcle\DB\Pool</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Sporcle.html"><i class="icon-th"></i> Sporcle</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Sporcle.html"><i class="icon-folder-open"></i> Sporcle</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#getConnectionPoolSize" title="getConnectionPoolSize :: Returns The number of servers available to connect to for a given instance type."><span class="description">Returns The number of servers available to connect to for a given instance type.</span><pre>getConnectionPoolSize()</pre></a></li>
+<li class="method public "><a href="#getPoolSize" title="getPoolSize :: Returns The number of servers available to connect to for a given instance type."><span class="description">Returns The number of servers available to connect to for a given instance type.</span><pre>getPoolSize()</pre></a></li>
+<li class="method public "><a href="#instance" title="instance :: Use this method to request database connections of the given $instanceType."><span class="description">Use this method to request database connections of the given $instanceType.</span><pre>instance()</pre></a></li>
+<li class="method public "><a href="#invalidate" title="invalidate :: Force an open database connection to close."><span class="description">Force an open database connection to close.</span><pre>invalidate()</pre></a></li>
+<li class="method public "><a href="#manualConnectionFailover" title="manualConnectionFailover :: Can be used if it is somehow preferable to close an active connection and reconnect
+to another random server from the pool with the same given instance type."><span class="description">Can be used if it is somehow preferable to close an active connection and reconnect
+to another random server from the pool with the same given instance type.</span><pre>manualConnectionFailover()</pre></a></li>
+<li class="method public "><a href="#requestConnection" title="requestConnection :: If needed, a new connection will be instantiated to the given db type,
+and the connection will be returned."><span class="description">If needed, a new connection will be instantiated to the given db type,
+and the connection will be returned.</span><pre>requestConnection()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected "><a href="#__construct" title="__construct :: Initializes DBPool with its pool of connection parameters."><span class="description">Initializes DBPool with its pool of connection parameters.</span><pre>__construct()</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="method private "><a href="#establishConnection" title="establishConnection :: Opens a new connection of the requested instance type if a server
+remains available from the pool."><span class="description">Opens a new connection of the requested instance type if a server
+remains available from the pool.</span><pre>establishConnection()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header private">» Private</li>
+<li class="property private "><a href="#%24connectionParams" title="$connectionParams :: "><span class="description">&lt;p&gt;represents a pool of available connections, with the first level reserved for the instance type and the second level for associative arrays defining the connection parameters for the given type.&lt;/p&gt;</span><pre>$connectionParams</pre></a></li>
+<li class="property private "><a href="#%24connections" title="$connections :: "><span class="description">&lt;p&gt;holds up to one active connection for each instance type requested. For a given instance, it will only cycle a new connection if the first attempt fails or if requested through manualConnectionFailover().&lt;/p&gt;
+</span><pre>$connections</pre></a></li>
+<li class="property private "><a href="#%24instance" title="$instance :: "><span class="description">&lt;p&gt;is the single instance of DBPool.&lt;/p&gt;</span><pre>$instance</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#CRON" title="CRON :: "><span class="description">CRON</span><pre>CRON</pre></a></li>
+<li class="constant  "><a href="#MASTER" title="MASTER :: "><span class="description">MASTER</span><pre>MASTER</pre></a></li>
+<li class="constant  "><a href="#SLAVE" title="SLAVE :: "><span class="description">SLAVE</span><pre>SLAVE</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CSporcle%5CDB%5CPool" id="\Sporcle\DB\Pool"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Sporcle.html">Sporcle</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Sporcle.DB.html">DB</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Sporcle.DB.Pool.html">Pool</a>
+</li>
+</ul>
+<div href="../classes/Sporcle.DB.Pool.html" class="element class">
+<p class="short_description">Pool initializes and returns database connections.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/Sporcle.DBPool.html">Sporcle</a></td>
+</tr>
+<tr>
+<th>subpackage</th>
+<td>DBPool</td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="mailto:dan@sporcle.com">Dan Munro</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="getConnectionPoolSize" id="getConnectionPoolSize"></a><div class="element clickable method public getConnectionPoolSize" data-toggle="collapse" data-target=".getConnectionPoolSize .collapse">
+<h2>Returns The number of servers available to connect to for a given instance type.</h2>
+<pre>getConnectionPoolSize(int $instanceType) : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$instanceType</h4>
+<code>int</code><p>The type of database connection to get the pool size for.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code>the number of available connections</div>
+</div></div>
+</div>
+<a name="getPoolSize" id="getPoolSize"></a><div class="element clickable method public getPoolSize" data-toggle="collapse" data-target=".getPoolSize .collapse">
+<h2>Returns The number of servers available to connect to for a given instance type.</h2>
+<pre>getPoolSize(int $instanceType) : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$instanceType</h4>
+<code>int</code><p>The type of database connection to get the pool size for.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code>the number of available connections</div>
+</div></div>
+</div>
+<a name="instance" id="instance"></a><div class="element clickable method public instance" data-toggle="collapse" data-target=".instance .collapse">
+<h2>Use this method to request database connections of the given $instanceType.</h2>
+<pre>instance(int $instanceType) : \Sporcle\DB\mysqli</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$instanceType</h4>
+<code>int</code><p>The type of database requested</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Sporcle\DB\mysqli</code>A mysqli connection</div>
+</div></div>
+</div>
+<a name="invalidate" id="invalidate"></a><div class="element clickable method public invalidate" data-toggle="collapse" data-target=".invalidate .collapse">
+<h2>Force an open database connection to close.</h2>
+<pre>invalidate(int $instanceType) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$instanceType</h4>
+<code>int</code><p>the type of database to force closed.</p></div>
+</div></div>
+</div>
+<a name="manualConnectionFailover" id="manualConnectionFailover"></a><div class="element clickable method public manualConnectionFailover" data-toggle="collapse" data-target=".manualConnectionFailover .collapse">
+<h2>Can be used if it is somehow preferable to close an active connection and reconnect
+to another random server from the pool with the same given instance type.</h2>
+<pre>manualConnectionFailover(int $instanceType) : <a href="../classes/Sporcle.DB.Mysqli.html">\Sporcle\DB\Mysqli</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$instanceType</h4>
+<code>int</code><p>the type of database to force cycling the connection.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/Sporcle.DB.Mysqli.html">\Sporcle\DB\Mysqli</a></code>A newly opened connection to the database type requested.</div>
+</div></div>
+</div>
+<a name="requestConnection" id="requestConnection"></a><div class="element clickable method public requestConnection" data-toggle="collapse" data-target=".requestConnection .collapse">
+<h2>If needed, a new connection will be instantiated to the given db type,
+and the connection will be returned.</h2>
+<pre>requestConnection(int $instanceType) : <a href="../classes/Sporcle.DB.Mysqli.html">\Sporcle\DB\Mysqli</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$instanceType</h4>
+<code>int</code><p>The type of database requested.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/Sporcle.DB.Mysqli.html">\Sporcle\DB\Mysqli</a></code>An open database connection.</div>
+</div></div>
+</div>
+<a name="__construct" id="__construct"></a><div class="element clickable method protected __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Initializes DBPool with its pool of connection parameters.</h2>
+<pre>__construct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a name="establishConnection" id="establishConnection"></a><div class="element clickable method private establishConnection" data-toggle="collapse" data-target=".establishConnection .collapse">
+<h2>Opens a new connection of the requested instance type if a server
+remains available from the pool.</h2>
+<pre>establishConnection(int $instanceType) : <a href="../classes/Sporcle.DB.Mysqli.html">\Sporcle\DB\Mysqli</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Each request for a new connection will remove the parameters for that
+connection from the pool to prevent reconnecting to the same server (a disconnect/new connection should
+mean the original connection is no longer accessible or purposely cycled).</p></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$instanceType</h4>
+<code>int</code><p>The type of database requested.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/Sporcle.DB.Mysqli.html">\Sporcle\DB\Mysqli</a></code>An open database connection.</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24connectionParams" id="$connectionParams"> </a><div class="element clickable property private $connectionParams" data-toggle="collapse" data-target=".$connectionParams .collapse">
+<h2>&lt;p&gt;represents a pool of available connections, with the first level reserved for the instance type and the second level for associative arrays defining the connection parameters for the given type.&lt;/p&gt;</h2>
+<pre>$connectionParams : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24connections" id="$connections"> </a><div class="element clickable property private $connections" data-toggle="collapse" data-target=".$connections .collapse">
+<h2>&lt;p&gt;holds up to one active connection for each instance type requested. For a given instance, it will only cycle a new connection if the first attempt fails or if requested through manualConnectionFailover().&lt;/p&gt;
+</h2>
+<pre>$connections : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24instance" id="$instance"> </a><div class="element clickable property private $instance" data-toggle="collapse" data-target=".$instance .collapse">
+<h2>&lt;p&gt;is the single instance of DBPool.&lt;/p&gt;</h2>
+<pre>$instance : \Sporcle\DB\DBPool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="CRON" id="CRON"> </a><div class="element clickable constant  CRON" data-toggle="collapse" data-target=".CRON .collapse">
+<h2>CRON</h2>
+<pre>CRON </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="MASTER" id="MASTER"> </a><div class="element clickable constant  MASTER" data-toggle="collapse" data-target=".MASTER .collapse">
+<h2>MASTER</h2>
+<pre>MASTER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="SLAVE" id="SLAVE"> </a><div class="element clickable constant  SLAVE" data-toggle="collapse" data-target=".SLAVE .collapse">
+<h2>SLAVE</h2>
+<pre>SLAVE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-08-24T14:25:27-07:00.<br></footer></div>
+</div>
+</body>
+</html>

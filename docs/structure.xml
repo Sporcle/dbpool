@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a10" title="">
+  <file path="Pool.php" hash="09af85a0a04e13c686f87c9b04e9f108" package="Default">
+    <docblock line="3">
+      <description><![CDATA[DBPool is a handler for one or more database connections built on top of mysqli.]]></description>
+      <long-description><![CDATA[<p>For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.</p>]]></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Sporcle\DB" line="20" package="Sporcle\DBPool">
+      <extends/>
+      <name>Pool</name>
+      <full_name>\Sporcle\DB\Pool</full_name>
+      <docblock line="12">
+        <description><![CDATA[Pool initializes and returns database connections.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="12" name="package" description="Sporcle"/>
+        <tag line="12" name="subpackage" description="DBPool"/>
+        <tag line="12" name="author" description="Dan Munro &lt;dan@sporcle.com&gt;"/>
+      </docblock>
+      <constant namespace="Sporcle\DB" line="22" package="Sporcle\DBPool">
+        <name>MASTER</name>
+        <full_name>MASTER</full_name>
+        <value><![CDATA[1]]></value>
+      </constant>
+      <constant namespace="Sporcle\DB" line="23" package="Sporcle\DBPool">
+        <name>SLAVE</name>
+        <full_name>SLAVE</full_name>
+        <value><![CDATA[2]]></value>
+      </constant>
+      <constant namespace="Sporcle\DB" line="24" package="Sporcle\DBPool">
+        <name>CRON</name>
+        <full_name>CRON</full_name>
+        <value><![CDATA[3]]></value>
+      </constant>
+      <property final="false" static="true" visibility="private" line="30" namespace="Sporcle\DB" package="Default">
+        <name>$instance</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="27">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="27" name="var" description="is the single instance of DBPool." type="\Sporcle\DB\DBPool">
+            <type by_reference="false">\Sporcle\DB\DBPool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="36" namespace="Sporcle\DB" package="Default">
+        <name>$connections</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="32">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="32" name="var" description="holds up to one active connection for each instance type requested. For a given instance, it will only cycle a new connection if the first attempt fails or if requested through manualConnectionFailover()." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="42" namespace="Sporcle\DB" package="Default">
+        <name>$connectionParams</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="38">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="38" name="var" description="represents a pool of available connections, with the first level reserved for the instance type and the second level for associative arrays defining the connection parameters for the given type." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Sporcle\DB" line="51" package="Sporcle\DBPool">
+        <name>instance</name>
+        <full_name>instance</full_name>
+        <docblock line="44">
+          <description><![CDATA[Use this method to request database connections of the given $instanceType.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="param" description="The type of database requested" type="int" variable="$instanceType">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="44" name="return" description="A mysqli connection" type="\Sporcle\DB\mysqli">
+            <type by_reference="false">\Sporcle\DB\mysqli</type>
+          </tag>
+        </docblock>
+        <argument line="51">
+          <name>$instanceType</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Sporcle\DB" line="65" package="Sporcle\DBPool">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="60">
+          <description><![CDATA[Initializes DBPool with its pool of connection parameters.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="access" description="private"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Sporcle\DB" line="123" package="Sporcle\DBPool">
+        <name>requestConnection</name>
+        <full_name>requestConnection</full_name>
+        <docblock line="113">
+          <description><![CDATA[If needed, a new connection will be instantiated to the given db type,
+and the connection will be returned.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="113" name="access" description="private"/>
+          <tag line="113" name="param" description="The type of database requested." type="int" variable="$instanceType">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="113" name="return" description="An open database connection." type="\Sporcle\DB\Mysqli">
+            <type by_reference="false">\Sporcle\DB\Mysqli</type>
+          </tag>
+        </docblock>
+        <argument line="123">
+          <name>$instanceType</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Sporcle\DB" line="150" package="Sporcle\DBPool">
+        <name>establishConnection</name>
+        <full_name>establishConnection</full_name>
+        <docblock line="138">
+          <description><![CDATA[Opens a new connection of the requested instance type if a server
+remains available from the pool.]]></description>
+          <long-description><![CDATA[<p>Each request for a new connection will remove the parameters for that
+connection from the pool to prevent reconnecting to the same server (a disconnect/new connection should
+mean the original connection is no longer accessible or purposely cycled).</p>]]></long-description>
+          <tag line="138" name="access" description="private"/>
+          <tag line="138" name="param" description="The type of database requested." type="int" variable="$instanceType">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="138" name="return" description="An open database connection." type="\Sporcle\DB\Mysqli">
+            <type by_reference="false">\Sporcle\DB\Mysqli</type>
+          </tag>
+        </docblock>
+        <argument line="150">
+          <name>$instanceType</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Sporcle\DB" line="185" package="Sporcle\DBPool">
+        <name>getConnectionPoolSize</name>
+        <full_name>getConnectionPoolSize</full_name>
+        <docblock line="178">
+          <description><![CDATA[Returns The number of servers available to connect to for a given instance type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="178" name="param" description="The type of database connection to get the pool size for." type="int" variable="$instanceType">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="178" name="return" description="the number of available connections" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="185">
+          <name>$instanceType</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Sporcle\DB" line="199" package="Sporcle\DBPool">
+        <name>getPoolSize</name>
+        <full_name>getPoolSize</full_name>
+        <docblock line="190">
+          <description><![CDATA[Returns The number of servers available to connect to for a given instance type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="190" name="access" description="private"/>
+          <tag line="190" name="param" description="The type of database connection to get the pool size for." type="int" variable="$instanceType">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="190" name="return" description="the number of available connections" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="199">
+          <name>$instanceType</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Sporcle\DB" line="212" package="Sporcle\DBPool">
+        <name>manualConnectionFailover</name>
+        <full_name>manualConnectionFailover</full_name>
+        <docblock line="204">
+          <description><![CDATA[Can be used if it is somehow preferable to close an active connection and reconnect
+to another random server from the pool with the same given instance type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="204" name="param" description="the type of database to force cycling the connection." type="int" variable="$instanceType">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="204" name="return" description="A newly opened connection to the database type requested." type="\Sporcle\DB\Mysqli">
+            <type by_reference="false">\Sporcle\DB\Mysqli</type>
+          </tag>
+        </docblock>
+        <argument line="212">
+          <name>$instanceType</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Sporcle\DB" line="223" package="Sporcle\DBPool">
+        <name>invalidate</name>
+        <full_name>invalidate</full_name>
+        <docblock line="218">
+          <description><![CDATA[Force an open database connection to close.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="218" name="param" description="the type of database to force closed." type="int" variable="$instanceType">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="223">
+          <name>$instanceType</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Mysqli.php" hash="b8cce5f80cd8a2d84f27a8ac8ccc7df9" package="Default">
+    <docblock line="3">
+      <description><![CDATA[DBPool is a handler for one or more database connections built on top of mysqli.]]></description>
+      <long-description><![CDATA[<p>For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.</p>]]></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Sporcle\DB" line="22" package="Sporcle\Mysqli">
+      <extends>\mysqli</extends>
+      <name>Mysqli</name>
+      <full_name>\Sporcle\DB\Mysqli</full_name>
+      <docblock line="12">
+        <description><![CDATA[A lightweight extension of PHP's mysqli in which we provide a additional
+error logging functionality and the ability to ask the connection what instance type
+it is.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="12" name="package" description="Sporcle"/>
+        <tag line="12" name="subpackage" description="Mysqli"/>
+        <tag line="12" name="author" description="Dan Munro &lt;dan@sporcle.com&gt;"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="28" namespace="Sporcle\DB" package="Default">
+        <name>$instanceType</name>
+        <default><![CDATA[0]]></default>
+        <docblock line="24">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="is used when deterimining if the query can be performed against the connection. This will be useful primarily when preventing insert or update queries from running on a slave." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Sporcle\DB" line="42" package="Sporcle\Mysqli">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="30">
+          <description><![CDATA[__construct() over-rides the native mysqli constructor in order to track the instance type of the db, otherwise
+the mysqli constructor docs still apply.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="30" name="param" description="The db host" type="string" variable="$host">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="30" name="param" description="The db user" type="string" variable="$user">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="30" name="param" description="The db passwork" type="string" variable="$pass">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="30" name="param" description="The name of the database" type="string" variable="$db">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="30" name="param" description="The type of db connection requested" type="int" variable="$instanceType">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="30" name="returns" description="Mysqli A new mysqli connection"/>
+        </docblock>
+        <argument line="42">
+          <name>$host</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="42">
+          <name>$user</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="42">
+          <name>$pass</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="42">
+          <name>$db</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="42">
+          <name>$instanceType</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Sporcle\DB" line="53" package="Sporcle\Mysqli">
+        <name>getInstanceType</name>
+        <full_name>getInstanceType</full_name>
+        <docblock line="48">
+          <description><![CDATA[Returns the instance type of the connection passed to the object in its constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="48" name="return" description="The instance type of the connection." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Sporcle\DB" line="65" package="Sporcle\Mysqli">
+        <name>query</name>
+        <full_name>query</full_name>
+        <docblock line="58">
+          <description><![CDATA[Queries the database with additional logging functionality.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="param" description="The SQL query to run against the database." type="string" variable="$queryStr">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="58" name="return" description="The result object from the query, or false on failure." type="\Sporcle\DB\mysqli_result">
+            <type by_reference="false">\Sporcle\DB\mysqli_result</type>
+          </tag>
+        </docblock>
+        <argument line="65">
+          <name>$queryStr</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="MysqliRO.php" hash="f588fd2af557f1fe7788bcb66db1db38" package="Default">
+    <docblock line="3">
+      <description><![CDATA[DBPool is a handler for one or more database connections built on top of mysqli.]]></description>
+      <long-description><![CDATA[<p>For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.</p>]]></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Sporcle\DB" line="22" package="Sporcle\MysqliRO">
+      <extends>\Sporcle\DB\Mysqli</extends>
+      <name>MysqliRO</name>
+      <full_name>\Sporcle\DB\MysqliRO</full_name>
+      <docblock line="12">
+        <description><![CDATA[A lightweight extension of PHP's mysqli in which we provide a additional
+error logging functionality and the ability to ask the connection what instance type
+it is.]]></description>
+        <long-description><![CDATA[<p>Additionally this class will prevent any writing queries (insert/update) from executing.</p>]]></long-description>
+        <tag line="12" name="package" description="Sporcle"/>
+        <tag line="12" name="subpackage" description="MysqliRO"/>
+        <tag line="12" name="author" description="Dan Munro &lt;dan@sporcle.com&gt;"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Sporcle\DB" line="33" package="Sporcle\MysqliRO">
+        <name>query</name>
+        <full_name>query</full_name>
+        <docblock line="25">
+          <description><![CDATA[Queries the database with additional logging functionality and a check that the
+isn't attempting to write to a slave.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="param" description="The SQL query to run against the database." type="string" variable="$queryStr">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="25" name="return" description="The result object from the query, or false on failure." type="\Sporcle\DB\mysqli_result">
+            <type by_reference="false">\Sporcle\DB\mysqli_result</type>
+          </tag>
+        </docblock>
+        <argument line="33">
+          <name>$queryStr</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Sporcle\DB" line="50" package="Sporcle\MysqliRO">
+        <name>isQueryWriting</name>
+        <full_name>isQueryWriting</full_name>
+        <docblock line="42">
+          <description><![CDATA[Checks if the query that is about to be performed will write to the database.]]></description>
+          <long-description><![CDATA[<p>If so, that is a problem because this is a read only connection.</p>]]></long-description>
+          <tag line="42" name="access" description="private"/>
+          <tag line="42" name="param" description="The SQL query to run against the database." type="string" variable="$queryStr">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="50">
+          <name>$queryStr</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Exception.php" hash="4157339f83e5513a1907a0c553d7c1dd" package="Default">
+    <docblock line="3">
+      <description><![CDATA[DBPool is a handler for one or more database connections built on top of mysqli.]]></description>
+      <long-description><![CDATA[<p>For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.</p>]]></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Sporcle\DB" line="20" package="Sporcle\Mysqli">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Sporcle\DB\Exception</full_name>
+      <docblock line="12">
+        <description><![CDATA[Handles exceptions in the DBPool classes.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="12" name="package" description="Sporcle"/>
+        <tag line="12" name="subpackage" description="Mysqli"/>
+        <tag line="12" name="author" description="Dan Munro &lt;dan@sporcle.com&gt;"/>
+      </docblock>
+      <constant namespace="Sporcle\DB" line="22" package="Sporcle\Mysqli">
+        <name>TYPE_NOT_DEFINED</name>
+        <full_name>TYPE_NOT_DEFINED</full_name>
+        <value><![CDATA[1]]></value>
+      </constant>
+      <constant namespace="Sporcle\DB" line="23" package="Sporcle\Mysqli">
+        <name>WRITING_TO_SLAVE</name>
+        <full_name>WRITING_TO_SLAVE</full_name>
+        <value><![CDATA[2]]></value>
+      </constant>
+      <constant namespace="Sporcle\DB" line="24" package="Sporcle\Mysqli">
+        <name>NO_CONNECTION</name>
+        <full_name>NO_CONNECTION</full_name>
+        <value><![CDATA[3]]></value>
+      </constant>
+    </class>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="Sporcle" full_name="Sporcle">
+    <package name="DBPool" full_name="Sporcle\DBPool"/>
+    <package name="Mysqli" full_name="Sporcle\Mysqli"/>
+    <package name="MysqliRO" full_name="Sporcle\MysqliRO"/>
+  </package>
+  <namespace name="Sporcle" full_name="Sporcle">
+    <namespace name="DB" full_name="Sporcle\DB"/>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
