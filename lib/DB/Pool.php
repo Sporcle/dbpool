@@ -39,7 +39,7 @@ class Pool
 	 * @var array $connectionParams represents a pool of available connections, with the first level reserved for the instance type
 	 * and the second level for associative arrays defining the connection parameters for the given type.
 	 */
-	private $connectionParams = array();
+	protected $connectionParams = array();
 
 	/**
 	 * Use this method to request database connections of the given $instanceType.
@@ -51,7 +51,7 @@ class Pool
 	public static function instance($instanceType)
 	{
 		if(!isset(self::$instance)) {
-			self::$instance = new self();
+			self::$instance = new static();
 		}
 
 		return self::$instance->requestConnection($instanceType);
@@ -62,52 +62,56 @@ class Pool
 	 *
 	 * @access private
 	 */
-	protected function __construct()
+	protected function __construct($connectionParams = [])
 	{
 		// Define connection parameters
-		$this->connectionParams = array
-		(
-			self::MASTER => array
+		if($connectionParams) {
+			$this->connectionParams = $connectionParams;
+		} else {
+			$this->connectionParams = array
 			(
-				array
+				self::MASTER => array
 				(
-					'host' => '',
-					'user' => '',
-					'pass' => '',
-					'db' => ''
-				)
-			),
-			self::SLAVE => array
-			(
-				array
-				(
-					'host' => '',
-					'user' => '',
-					'pass' => '',
-					'db' => ''
+					array
+					(
+						'host' => '',
+						'user' => '',
+						'pass' => '',
+						'db' => ''
+					)
 				),
-				array
+				self::SLAVE => array
 				(
-					'host' => '',
-					'user' => '',
-					'pass' => '',
-					'db' => ''
-				)
-			),
-			self::CRON => array
-			(
-				array
+					array
+					(
+						'host' => '',
+						'user' => '',
+						'pass' => '',
+						'db' => ''
+					),
+					array
+					(
+						'host' => '',
+						'user' => '',
+						'pass' => '',
+						'db' => ''
+					)
+				),
+				self::CRON => array
 				(
-					'host' => '',
-					'user' => '',
-					'pass' => '',
-					'db' => ''
+					array
+					(
+						'host' => '',
+						'user' => '',
+						'pass' => '',
+						'db' => ''
+					)
 				)
-			)
-		);
+			);
 
-		// Randomize connection order for slaves
-		shuffle($this->connectionParams[self::SLAVE]);
+			// Randomize connection order for slaves
+			shuffle($this->connectionParams[self::SLAVE]);
+		}
 	}
 
 	/**
@@ -158,10 +162,10 @@ class Pool
 		}
 
 		// Find the right connection object
-		if($instanceType === self::SLAVE) {
-			$class = 'MysqliRO';
+		if($instanceType === static::SLAVE) {
+			$class = 'Sporcle\DB\MysqliRO';
 		} else {
-			$class = 'Mysqli';
+			$class = 'Sporcle\DB\Mysqli';
 		}
 		$connection = new $class($c['host'], $c['user'], $c['pass'], $c['db'], $instanceType);
 
