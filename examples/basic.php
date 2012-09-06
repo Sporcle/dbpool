@@ -13,24 +13,30 @@ class MyDB extends Sporcle\DB\Pool
 
 	protected function __construct()
 	{
-		$this->connectionParams = [
-			self::MASTER => [
-				['host' => '127.0.0.1',
-				'user' => 'root',
-				'pass' => 'password',
-				'db' => 'dbname']
-			],
-			self::SLAVE => [
-				['host' => '127.0.0.1',
-				'user' => 'root',
-				'pass' => 'password',
-				'db' => 'dbname'],
-				['host' => '127.0.0.1',
-				'user' => 'root',
-				'pass' => 'password',
-				'db' => 'dbname']
-			]
-		];
+		$this->connectionParams = array(
+			self::MASTER => array(
+				array(
+					'host' => '127.0.0.1',
+					'user' => 'root',
+					'pass' => 'password',
+					'db' => 'dbname'
+				)
+			),
+			self::SLAVE => array(
+				array(
+					'host' => '127.0.0.1',
+					'user' => 'root',
+					'pass' => 'password',
+					'db' => 'dbname'
+				),
+				array(
+					'host' => '127.0.0.1',
+					'user' => 'root',
+					'pass' => 'password',
+					'db' => 'dbname'
+				)
+			)
+		);
 		shuffle($this->connectionParams[self::SLAVE]);
 	}
 }
