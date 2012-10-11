@@ -61,9 +61,9 @@ $result->free();
 /**
  * An equivalent prepared statement -- no more susceptibility
  */
-$stmt = $dbslave->prepare("SELECT user_id, user_name FROM users where user_id = ?");
+$stmt = $dbslave->prepare("SELECT user_name FROM users where user_id = ?");
 $stmt->bind_param('i', $sampleUserID);
-$stmt->bind_result($gameID, $gameName);
+$stmt->bind_result($userName);
 $stmt->execute();
 $stmt->fetch();
 $stmt->free_result();
